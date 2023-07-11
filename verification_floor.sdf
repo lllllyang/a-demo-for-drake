@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <model name="paddle2">
+    <link name="paddle2">
+      <pose>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>100</mass>
+        <inertia>
+          <!-- The code will likely fix it to World frame, so the calculation
+             here is just for completeness. Solid cuboid of width w, height h,
+             depth d, and mass m has:
+               Inertia tensor = (m/12)Diag(h^2+d^2, w^2+d^2, w^2+h^2) -->
+          <ixx>8.3542</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>8.3542</iyy>
+          <iyz>0</iyz>
+          <izz>16.6667</izz>
+        </inertia>
+      </inertial>
+      <visual name="visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1 1 0.05</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0.8 0.5 0.5 0.2</diffuse>
+        </material>
+      </visual>
+      <collision name="collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1 1 0.05</size>
+          </box>
+        </geometry>
+        <drake:proximity_properties>
+          <drake:point_contact_stiffness>1</drake:point_contact_stiffness>
+          <drake:compliant_hydroelastic/>
+          <drake:hydroelastic_modulus>5e11</drake:hydroelastic_modulus>
+          <drake:mesh_resolution_hint>0.0001</drake:mesh_resolution_hint>
+	  <drake:hunt_crossley_dissipation>3</drake:hunt_crossley_dissipation>
+          <drake:mu_dynamic>0.9</drake:mu_dynamic>
+          <drake:mu_static>0.9</drake:mu_static>
+        </drake:proximity_properties>
+      </collision>
+    </link>
+  </model>
+</sdf>
