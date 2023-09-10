@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <model name="cake">
+    <link name="cake">
+      <pose>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>0.000208</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000208</iyy>
+          <iyz>0</iyz>
+          <izz>0.000208</izz>
+        </inertia>
+      </inertial>
+      <visual name="visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.02</length>
+  	    <radius>0.0325</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>1 0.1 0.1 0.1</diffuse>
+        </material>
+      </visual>
+      <collision name="collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.02</length>
+  	    <radius>0.0325</radius>
+          </cylinder>
+        </geometry>
+        <drake:proximity_properties>
+          <drake:point_contact_stiffness>1</drake:point_contact_stiffness>
+          <drake:compliant_hydroelastic/>
+          <drake:hydroelastic_modulus>3e7</drake:hydroelastic_modulus>
+          <drake:mesh_resolution_hint>0.0005</drake:mesh_resolution_hint>
+	  <drake:hunt_crossley_dissipation>1.25</drake:hunt_crossley_dissipation>
+          <drake:mu_dynamic>0.9</drake:mu_dynamic>
+          <drake:mu_static>0.9</drake:mu_static>
+        </drake:proximity_properties>
+      </collision>
+    </link>
+      
+    
+  </model>
+</sdf>

@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <model name="valve">
+    <link name="valve">
+      <pose>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <!-- The code will likely fix it to World frame, so the calculation
+             here is just for completeness. Solid cuboid of width w, height h,
+             depth d, and mass m has:
+               Inertia tensor = (m/12)Diag(h^2+d^2, w^2+d^2, w^2+h^2)
+                              = Diag(16.8333, 16.8333, 33.3333) -->
+          <ixx>0.05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.05</iyy>
+          <iyz>0</iyz>
+          <izz>0.05</izz>
+        </inertia>
+      </inertial>
+      <visual name="visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.18</length>
+  	    <radius>0.0325</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>1 0.2 0.2 0.8</diffuse>
+        </material>
+      </visual>
+      <collision name="collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.18</length>
+  	    <radius>0.0325</radius>
+          </cylinder>
+        </geometry>
+        <drake:proximity_properties>
+          <drake:point_contact_stiffness>1</drake:point_contact_stiffness>
+          <drake:compliant_hydroelastic/>
+          <drake:hydroelastic_modulus>2e7</drake:hydroelastic_modulus>
+          <drake:mesh_resolution_hint>0.01</drake:mesh_resolution_hint>
+	  <drake:hunt_crossley_dissipation>30</drake:hunt_crossley_dissipation>
+          <drake:mu_dynamic>0.6</drake:mu_dynamic>
+          <drake:mu_static>0.6</drake:mu_static>
+        </drake:proximity_properties>
+      </collision>
+    </link>
+    
+    <frame name="valve_bottom">
+	<pose relative_to="valve">0 0 -0.09 0 0 0</pose>
+    </frame>
+    
+  </model>
+</sdf>
